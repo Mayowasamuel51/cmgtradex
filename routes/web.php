@@ -108,7 +108,13 @@ Route::get('/cookinghome', [FrontendController::class , 'cookinghome']);
 // NewsLetter
     Route::post('/subscribe', [FrontendController::class, 'subscribe'])->name('subscribe');
 
+        // testing here .....................
+
+        Route::get('/hey',function(){
+            return "Hello can you ear me out";
+        });
 // Product Review
+
     Route::resource('/review', 'ProductReviewController');
     Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
