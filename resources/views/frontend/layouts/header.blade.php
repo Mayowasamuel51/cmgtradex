@@ -48,10 +48,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <!-- @php
-                            $settings=DB::table('settings')->get();
-                        @endphp                    
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo"></a> -->
+                     
                         <img src="{{ asset("./images/cmg.png")}}"/>
                     </div>
                     <!--/ End Logo -->
