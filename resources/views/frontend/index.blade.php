@@ -10,8 +10,7 @@
             @endforeach
 
         </ol>
-        <img src="{{ asset("./images/6397f8a82c9456accef99223b25d1fc5 (2).png") }}"/>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos quidem voluptates ea adipisci eum magni fugiat ipsum unde ad dolore quos, amet voluptate? Esse nihil voluptas animi vel harum, eum eos soluta quia debitis obcaecati laudantium recusandae sint molestiae blanditiis aperiam voluptatem, numquam excepturi. Quibusdam quidem velit magnam soluta harum, exercitationem nostrum libero, laudantium labore iure at, excepturi qui aperiam perferendis saepe! Magni excepturi esse similique nam necessitatibus, atque nostrum ipsum laborum? Nihil, eius doloremque! Nihil ipsam earum dolores veritatis maiores quisquam! Voluptatum, aspernatur, autem et error blanditiis unde soluta perspiciatis laudantium eaque porro aut quibusdam fuga. Sed a soluta eligendi vel facilis ipsam doloremque? Eaque doloribus eius veniam nesciunt voluptas quia eligendi quos labore sequi illo natus, corporis numquam molestias nulla exercitationem ex? Qui, maxime? Inventore, molestiae? Cupiditate id voluptatem neque labore temporibus, eius fuga, quaerat quo dolorum ipsa, quibusdam corrupti. Expedita nesciunt eaque molestias aliquid ab beatae facere minima eos optio earum distinctio quos nihil suscipit delectus iure neque voluptatem ducimus libero, impedit enim, dolorum ipsam sint aspernatur? Voluptatem cupiditate pariatur incidunt impedit magnam ullam, voluptates enim at? Corporis ratione vero quidem magni autem beatae harum quia molestiae numquam, deleniti eaque quae consectetur quisquam sequi delectus eos pariatur?
+    
         <div class="carousel-inner" role="listbox">
                 @foreach($banners as $key=>$banner)
                 <div class="carousel-item {{(($key==0)? 'active' : '')}}">
