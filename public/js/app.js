@@ -19062,7 +19062,10 @@ var Echo = /*#__PURE__*/function () {
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
 /***/ }),
 
 /***/ "./node_modules/lodash/lodash.js":
@@ -19086,15 +19089,23 @@ var Echo = /*#__PURE__*/function () {
   var undefined;
 
   /** Used as the semantic version number. */
+<<<<<<< HEAD
   var VERSION = '4.17.21';
+=======
+  var VERSION = '4.17.19';
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
 
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
+<<<<<<< HEAD
       FUNC_ERROR_TEXT = 'Expected a function',
       INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
+=======
+      FUNC_ERROR_TEXT = 'Expected a function';
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -19227,11 +19238,18 @@ var Echo = /*#__PURE__*/function () {
   var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
       reHasRegExpChar = RegExp(reRegExpChar.source);
 
+<<<<<<< HEAD
   /** Used to match leading whitespace. */
   var reTrimStart = /^\s+/;
 
   /** Used to match a single whitespace character. */
   var reWhitespace = /\s/;
+=======
+  /** Used to match leading and trailing whitespace. */
+  var reTrim = /^\s+|\s+$/g,
+      reTrimStart = /^\s+/,
+      reTrimEnd = /\s+$/;
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
 
   /** Used to match wrap detail comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -19241,6 +19259,7 @@ var Echo = /*#__PURE__*/function () {
   /** Used to match words composed of alphanumeric characters. */
   var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 
+<<<<<<< HEAD
   /**
    * Used to validate the `validate` option in `_.template` variable.
    *
@@ -19253,6 +19272,8 @@ var Echo = /*#__PURE__*/function () {
    */
   var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
 
+=======
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
 
@@ -20082,6 +20103,7 @@ var Echo = /*#__PURE__*/function () {
   }
 
   /**
+<<<<<<< HEAD
    * The base implementation of `_.trim`.
    *
    * @private
@@ -20095,6 +20117,8 @@ var Echo = /*#__PURE__*/function () {
   }
 
   /**
+=======
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
    * The base implementation of `_.unary` without support for storing metadata.
    *
    * @private
@@ -20428,6 +20452,7 @@ var Echo = /*#__PURE__*/function () {
   }
 
   /**
+<<<<<<< HEAD
    * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
    * character of `string`.
    *
@@ -20443,6 +20468,8 @@ var Echo = /*#__PURE__*/function () {
   }
 
   /**
+=======
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
    * Used by `_.unescape` to convert HTML entities to characters.
    *
    * @private
@@ -31610,7 +31637,11 @@ var Echo = /*#__PURE__*/function () {
       if (typeof value != 'string') {
         return value === 0 ? value : +value;
       }
+<<<<<<< HEAD
       value = baseTrim(value);
+=======
+      value = value.replace(reTrim, '');
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
       var isBinary = reIsBinary.test(value);
       return (isBinary || reIsOctal.test(value))
         ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -33982,12 +34013,15 @@ var Echo = /*#__PURE__*/function () {
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
+<<<<<<< HEAD
       // Throw an error if a forbidden character was found in `variable`, to prevent
       // potential command injection attacks.
       else if (reForbiddenIdentifierChars.test(variable)) {
         throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
       }
 
+=======
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
       // Cleanup code by stripping empty strings.
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
         .replace(reEmptyStringMiddle, '$1')
@@ -34101,7 +34135,11 @@ var Echo = /*#__PURE__*/function () {
     function trim(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
+<<<<<<< HEAD
         return baseTrim(string);
+=======
+        return string.replace(reTrim, '');
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -34136,7 +34174,11 @@ var Echo = /*#__PURE__*/function () {
     function trimEnd(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
+<<<<<<< HEAD
         return string.slice(0, trimmedEndIndex(string) + 1);
+=======
+        return string.replace(reTrimEnd, '');
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -34710,7 +34752,11 @@ var Echo = /*#__PURE__*/function () {
      * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
      *
      * // Checking for several possible values
+<<<<<<< HEAD
      * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+=======
+     * _.filter(users, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
      * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
@@ -34747,7 +34793,11 @@ var Echo = /*#__PURE__*/function () {
      * // => { 'a': 4, 'b': 5, 'c': 6 }
      *
      * // Checking for several possible values
+<<<<<<< HEAD
      * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+=======
+     * _.filter(users, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+>>>>>>> 337a50902a4aeb81343617fe19a3e468fefccfcd
      * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
