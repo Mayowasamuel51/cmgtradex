@@ -57,6 +57,11 @@
     Route::get('/', [FrontendController::class, 'home'])->name('home');
 
 // Frontend Routes
+Route::get('/salesprouduct', [FrontendController::class, 'salesprouduct']);
+Route::get('/cookingproduct', [FrontendController::class, 'cookingproduct']);
+Route::get('/cookinghome', [FrontendController::class , 'cookinghome']);
+
+
     Route::get('/home', [FrontendController::class, 'index']);
     Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
     Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');

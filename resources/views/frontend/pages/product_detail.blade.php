@@ -47,15 +47,28 @@
 											<!-- Images slider -->
 											<div class="flexslider-thumbnails">
 												<ul class="slides">
-													@php 
-														$photo=explode(',',$product_detail->photo);
-													// dd($photo);
-													@endphp
-													@foreach($photo as $data)
-														<li data-thumb="{{$data}}" rel="adjustX:10, adjustY:">
-															<img src="{{$data}}" alt="{{$data}}">
-														</li>
-													@endforeach
+												    
+												         @if(!empty($product_detail->photo))
+              <!-- aliable and out of stock -->
+              @php
+              $photos = explode('|', $product_detail->photo); // Convert string to array
+              $firstPhoto = $photos[0] ?? null; // Get first image safely
+              @endphp
+
+              @if($firstPhoto)
+              <img src="{{ asset($firstPhoto) }}" class="img-fluid shadow rounded product-image" alt="Product Image">
+              @else
+              <img src="{{ asset('backend/img/thumbnail-default.jpg') }}" class="img-fluid" style="max-width:80px;" alt="Default Image">
+              @endif
+              @else
+              <img src="{{ asset('backend/img/thumbnail-default.jpg') }}" class="img-fluid" style="max-width:80px;" alt="Default Image">
+              @endif
+												    
+												    
+											
+											
+													
+													 
 												</ul>
 											</div>
 											<!-- End Images slider -->
@@ -323,6 +336,10 @@
                                 <div class="single-product">
                                     <div class="product-img">
 										<a href="{{route('product-detail',$data->slug)}}">
+										    
+										    
+										    
+										    
 											@php 
 												$photo=explode(',',$data->photo);
 											@endphp
