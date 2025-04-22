@@ -161,9 +161,9 @@
 									<h2 class="font-weight-bold mb-4 text-center">Place an Order</h2>
 
 									<div class="container py-5">
-    <h2 class="text-center mb-5 fw-bold">CMG PRODUCT LISTING</h2>
+   
 	<div class="container py-5">
-  <h2 class="text-center mb-5 fw-bold">CMG PRODUCT LISTING</h2>
+  <h2 class="text-center mb-5 fw-bold">CMG CALCUlATOR</h2>
 
   @php
     $products = [
