@@ -158,7 +158,7 @@
                                 <div class="product-img">
                                     <a href="{{ route('product-detail', $product->slug) }}">
                                         @if($product->photo)
-                                        <img src="{{  asset('storage/'.$product->photo[0]) }}" class="img-fluid zoom shadow rounded"
+                                        <img src="{{  asset($product->photo[0]) }}" class="img-fluid zoom shadow rounded"
                                             style="max-width: 150px; height: auto; object-fit: cover; border: 3px solid #ddd; padding: 5px;"
                                             alt="Product Image">
                                         @else
