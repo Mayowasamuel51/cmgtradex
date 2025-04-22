@@ -119,7 +119,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 d-flex flex-column">
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="{{ $product->title === ' Cooking ,Home , industry and commercials.' ? 'https://cmgtradecommodityx.com/cookingproduct' : 'https://cmgtradecommodityx.com/salesprouduct' }}">
+                                <a href="{{ $product->title === ' Cooking ,Home , industry and commercials.' ? 'http://localhost:8000/cookingproduct' : 'http://localhost:8000/salesprouduct' }}">
                                     @php
                                         $photos = explode('|', $product->photo ?? '');
                                         $firstPhoto = $photos[0] ?? null;

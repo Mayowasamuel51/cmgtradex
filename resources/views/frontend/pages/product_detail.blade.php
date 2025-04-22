@@ -157,71 +157,98 @@
 
 								<!--  -->
 								<div class="container mt-5">
-  <!-- Place an Order Title -->
-  <h2 class="font-weight-bold mb-4 text-center">Place an Order</h2>
+									<!-- Place an Order Title -->
+									<h2 class="font-weight-bold mb-4 text-center">Place an Order</h2>
 
-  <form id="orderForm"  action="{{ route('submit-order') }}" method="post" class="form-group">
-  @csrf
-  <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your name">
+									<div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold">CMG PRODUCT LISTING</h2>
+	<div class="container py-5">
+  <h2 class="text-center mb-5 fw-bold">CMG PRODUCT LISTING</h2>
+
+  @php
+    $products = [
+      ['items' => [['name' => '25KG STORAGE SYSTEM', 'price' => 499000], ['name' => '35KG STORAGE SYSTEM', 'price' => 575000], ['name' => '50KG STORAGE SYSTEM', 'price' => 649000]]],
+      ['items' => [['name' => 'MGC MUMAG 2-Burner Table Top Gas Cooker (with Oven)', 'price' => 720000]]],
+      ['items' => [['name' => 'MGC MUMAG 4-Burner Table Top Gas Cooker', 'price' => 335000], ['name' => 'MGC MUMAG 3-Burner Table Top Gas Cooker', 'price' => 300000], ['name' => 'MGC MUMAG 2-Burner Table Top Gas Cooker', 'price' => 190000]]],
+      ['items' => [['name' => 'MGC MUMAG 5-Burner Table Top Gas Cooker', 'price' => 370000]]]
+    ];
+  @endphp
+
+  <form id="orderForm" action="{{ route('submit-order') }}" method="POST" onsubmit="return prepareOrderData()">
+    @csrf
+    <div class="row justify-content-center g-4">
+      @foreach($products as $product)
+        <div class="col-md-4 col-sm-6 d-flex">
+          <div class="card shadow-sm w-100 h-100">
+            <div class="card-body text-center">
+              @foreach($product['items'] as $item)
+                <div class="mb-3">
+                  <h6 class="mb-1 fw-semibold">{{ $item['name'] }}</h6>
+                  <span class="badge bg-success">₦{{ number_format($item['price']) }}</span>
+                  <input type="number" class="form-control quantity mt-2"
+                        min="0"
+                        placeholder="Qty"
+                        data-price="{{ $item['price'] }}"
+                        data-name="{{ $item['name'] }}">
+                </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endforeach
     </div>
 
-    <!-- Email Input -->
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" class="form-control" required placeholder="Enter your email">
-    </div>
-	<div class="form-group">
-      <label for="email">Phone:</label>
-      <input type="number" id="phone" name="phone" class="form-control" required placeholder="Enter your  phone number ">
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-primary" onclick="generateInvoice()">Generate Invoice</button>
     </div>
 
-    <!-- Company Address Input -->
-    <div class="form-group">
-      <label for="companyAddress">Company Address:</label>
-      <input type="text" id="companyAddress" name="companyAddress" class="form-control" required placeholder="Enter your company address">
+    <div class="mt-5" id="invoiceSection" style="display:none">
+      <h4 class="fw-bold">Invoice Summary</h4>
+      <ul class="list-group mb-3" id="invoiceList"></ul>
+      <h5>Total: <span id="invoiceTotal"></span></h5>
+
+      <!-- Hidden inputs to store generated values -->
+      <textarea name="itemList" id="hiddenItemList" class="form-control" hidden></textarea>
+      <input type="hidden" name="totalPrice" id="hiddenPrice">
+
+      <!-- Customer Info -->
+      <div class="form-group mt-4">
+        <label>Name:</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label>Phone:</label>
+        <input type="number" name="phone" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label>Company Address:</label>
+        <input type="text" name="companyAddress" class="form-control" required>
+      </div>
+
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-success">Submit Order</button>
+      </div>
     </div>
-
-    <!-- List of Items (Checkboxes with prices) -->
-    <div class="form-group">
-      <label>Storage System Options:</label><br>
-      <input type="checkbox" id="storage25k" name="items[]" value="25k Storage System" data-price="499000">
-      <label for="storage25k">25k Storage System - ₦499,000</label><br>
-      <input type="checkbox" id="storage35k" name="items[]" value="35k Storage System" data-price="579000">
-      <label for="storage35k">35k Storage System - ₦579,000</label><br>
-      <input type="checkbox" id="storage50k" name="items[]" value="50k Storage System" data-price="499000">
-      <label for="storage50k">50k Storage System - ₦499,000</label><br>
-      <input type="checkbox" id="mumagCooker" name="items[]" value="Mumag 5-burner Table Top Gas Cooker" data-price="3700000">
-      <label for="mumagCooker">Mumag 5-burner Table Top Gas Cooker - ₦3,700,000</label><br>
-    </div>
-
-    <!-- Textarea to enter items and quantities -->
-    <div class="form-group">
-      <label for="itemList">Enter list of items and quantities (e.g. "25k Storage System x2"):</label>
-	  <textarea id="itemList" name="itemList" rows="4" class="form-control" placeholder="e.g. 25k Storage System x2, Mumag Cooker x1"></textarea>
-    </div>
-
-    <!-- Total Price Display -->
-    <!-- <p>Total Price: ₦<span id="totalPrice">0</span></p> -->
-
-    <!-- Hidden Input for Total Price -->
-    <input type="hidden" name="totalPrice" id="hiddenPrice">
-
-    <!-- Submit Button -->
-	<button type="submit" class="btn btn-primary bg">Get Invoice</button>
-	<div>
-		<h5 class="">you will get a call or message from our sales dapartment</h5>
-	</div>
   </form>
 </div>
-@if (session('success'))
-  <div class="alert alert-success">
-    {{ session('success') }}
-  </div>
-@endif
-			
-<!--  -->
+
+   
+</div>
+								</div>
+								@if (session('success'))
+								<div class="alert alert-success">
+									{{ session('success') }}
+								</div>
+								@endif
+
+								<!--  -->
 								<!-- Reviews Tab -->
 								<div class="tab-pane fade" id="reviews" role="tabpanel">
 									<div class="tab-single review-panel">
@@ -451,7 +478,7 @@
 									<span><i class="fa fa-check-circle-o"></i> in stock</span>
 								</div>
 							</div>
-							<h3>$29.00</h3>
+
 							<div class="quickview-peragraph">
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
 							</div>
@@ -570,63 +597,47 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
-	
-  const categories = {
-    Power: ['Generator', 'Inverter', 'Battery'],
-    Energy: ['Cooking Gas', 'Diesel'],
-    Metal: ['Steel Rod', 'Aluminum Sheet']
-  };
+	function generateInvoice() {
+  const quantities = document.querySelectorAll('.quantity');
+  let total = 0;
+  let itemList = [];
+  let html = '';
 
-  const prices = {
-    Generator: 150000,
-    Inverter: 85000,
-    Battery: 50000,
-    'Cooking Gas': 8000,
-    Diesel: 7000,
-    'Steel Rod': 12000,
-    'Aluminum Sheet': 10000
-  };
+  quantities.forEach(input => {
+    const qty = parseInt(input.value);
+    const price = parseInt(input.dataset.price);
+    const name = input.dataset.name;
 
-  function updateCategoryOptions(type) {
-    const categorySelect = $('#productCategory');
-    categorySelect.empty().append('<option value="">Select Category</option>');
-    if (categories[type]) {
-      categories[type].forEach(cat => {
-        categorySelect.append(`<option value="${cat}">${cat}</option>`);
-      });
+    if (qty > 0) {
+      const subtotal = qty * price;
+      total += subtotal;
+      html += `<li class="list-group-item">${qty} × ${name} = ₦${subtotal.toLocaleString()}</li>`;
+      itemList.push(`${qty} × ${name} = ₦${subtotal.toLocaleString()}`);
     }
-  }
-
-  function calculatePrice() {
-    const category = $('#productCategory').val();
-    const quantity = parseInt($('#quantity').val()) || 1;
-    const unitPrice = prices[category] || 0;
-    const total = unitPrice * quantity;
-    $('#totalPrice').text(total.toLocaleString());
-    $('#hiddenPrice').val(total);
-  }
-
-  $(document).ready(function () {
-    console.log("✅ jQuery is working");
-
-    $('#productType').on('change', function () {
-      const type = $(this).val();
-      updateCategoryOptions(type);
-      calculatePrice();
-    });
-
-    $('#productCategory').on('change', function () {
-      calculatePrice();
-    });
-
-    $('#quantity').on('input', function () {
-      calculatePrice();
-    });
-
-    $('#orderForm').on('submit', function () {
-      // Laravel will automatically get name="type", name="category", etc.
-    });
   });
+
+  if (itemList.length === 0) {
+    html = '<li class="list-group-item">No items selected.</li>';
+  }
+
+  document.getElementById('invoiceList').innerHTML = html;
+  document.getElementById('invoiceTotal').innerText = `₦${total.toLocaleString()}`;
+  document.getElementById('hiddenItemList').value = itemList.join('\n');
+  document.getElementById('hiddenPrice').value = total;
+  document.getElementById('invoiceSection').style.display = 'block';
+}
+
+function prepareOrderData() {
+  const hiddenList = document.getElementById('hiddenItemList').value;
+  const hiddenPrice = document.getElementById('hiddenPrice').value;
+
+  if (!hiddenList || hiddenPrice == 0) {
+    alert('Please generate invoice before submitting!');
+    return false;
+  }
+
+  return true;
+}
 </script>
 
 @endpush

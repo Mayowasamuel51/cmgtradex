@@ -29,16 +29,16 @@ class OrderController extends Controller
              'email' => 'required|email',
              'companyAddress' => 'required|string|max:255',
              'itemList' => 'required|string',
-              'phone' => 'required|numeric'
+              'phone' => 'required|numeric',
          ]);
  
          // Create a new order
          Order::create([
-             'name' => $validated['name'],
+             'first_name' => $validated['name'],
              'email' => $validated['email'],
              'phone' => $validated['phone'],
              'address1' => $validated['companyAddress'],
-             'address2' => $validated['itemList'],
+             'address2' => $validated['itemList'], // descript
          ]);
  
          // Flash a success message

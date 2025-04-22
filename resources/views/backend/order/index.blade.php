@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Order Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left " style="font-size: 80px;">Order Lists from customers </h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -21,25 +21,14 @@
               <th>Order No.</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Quantity</th>
-              <th>Charge</th>
-              <th>Total Amount</th>
+              <th>Date</th>
+              <th>Description</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Order No.</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Quantity</th>
-              <th>Charge</th>
-              <th>Total Amount</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
+          
           </tfoot>
           <tbody>
             @foreach($orders as $order)  
@@ -51,10 +40,11 @@
                     <td>{{$order->order_number}}</td>
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
                     <td>{{$order->email}}</td>
-                    <td>{{$order->quantity}}</td>
+                    <td>{{date('d-m-Y', strtotime($order->created_at))}} </td>
+                    <td>{{$order->address2}} </td>
                     <td>@foreach($shipping_charge as $data) $ {{number_format($data,2)}} @endforeach</td>
                     <td>${{number_format($order->total_amount,2)}}</td>
-                    <td>
+                    <!-- <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">{{$order->status}}</span>
                         @elseif($order->status=='process')
@@ -64,7 +54,7 @@
                         @else
                           <span class="badge badge-danger">{{$order->status}}</span>
                         @endif
-                    </td>
+                    </td> -->
                     <td>
                         <a href="{{route('order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
                         <a href="{{route('order.edit',$order->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>

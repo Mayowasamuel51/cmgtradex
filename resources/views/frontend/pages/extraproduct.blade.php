@@ -92,6 +92,86 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="container mt-5">
+  <!-- Place an Order Title -->
+  <h2 class="font-weight-bold mb-4 text-center">Place an Order</h2>
+
+  <form id="orderForm"  action="{{ route('submit-order') }}" method="post" class="form-group">
+  @csrf
+  <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your name">
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" class="form-control" required placeholder="Enter your email">
+    </div>
+	<div class="form-group">
+      <label for="email">Phone:</label>
+      <input type="number" id="phone" name="phone" class="form-control" required placeholder="Enter your  phone number ">
+    </div>
+
+    <!-- Company Address Input -->
+    <div class="form-group">
+      <label for="companyAddress">Company Address:</label>
+      <input type="text" id="companyAddress" name="companyAddress" class="form-control" required placeholder="Enter your company address">
+    </div>
+
+    <!-- List of Items (Checkboxes with prices) -->
+	<div class="form-group">
+  <label><strong>Product Options Available:</strong></label><br>
+
+  <input type="checkbox" id="storage25k" name="items[]" value="25KG Storage System" data-price="499000">
+  <label for="storage25k">25KG Storage System - ₦499,000</label><br>
+
+  <input type="checkbox" id="storage35k" name="items[]" value="35KG Storage System" data-price="575000">
+  <label for="storage35k">35KG Storage System - ₦575,000</label><br>
+
+  <input type="checkbox" id="storage50k" name="items[]" value="50KG Storage System" data-price="649000">
+  <label for="storage50k">50KG Storage System - ₦649,000</label><br>
+
+  <input type="checkbox" id="mumag2b" name="items[]" value="MGC MUMAG 2-Burner Table Top Gas Cooker (with Oven)" data-price="720000">
+  <label for="mumag2b">MGC MUMAG 2-Burner Table Top Gas Cooker (with Oven) - ₦720,000</label><br>
+
+  <input type="checkbox" id="mumag4b" name="items[]" value="MGC MUMAG 4-Burner Table Top Gas Cooker" data-price="335000">
+  <label for="mumag4b">MGC MUMAG 4-Burner Table Top Gas Cooker - ₦335,000</label><br>
+
+  <input type="checkbox" id="mumag3b" name="items[]" value="MGC MUMAG 3-Burner Table Top Gas Cooker" data-price="300000">
+  <label for="mumag3b">MGC MUMAG 3-Burner Table Top Gas Cooker - ₦300,000</label><br>
+
+  <input type="checkbox" id="mumag2bplain" name="items[]" value="MGC MUMAG 2-Burner Table Top Gas Cooker (Plain)" data-price="190000">
+  <label for="mumag2bplain">MGC MUMAG 2-Burner Table Top Gas Cooker (Plain) - ₦190,000</label><br>
+</div>
+
+
+    <!-- Textarea to enter items and quantities -->
+    <div class="form-group">
+      <label for="itemList">Enter list of items and quantities (e.g. "25k Storage System x2"):</label>
+	  <textarea id="itemList" name="itemList" rows="4" class="form-control" placeholder="e.g. 25k Storage System x2, Mumag Cooker x1"></textarea>
+    </div>
+
+    <!-- Total Price Display -->
+    <!-- <p>Total Price: ₦<span id="totalPrice">0</span></p> -->
+
+    <!-- Hidden Input for Total Price -->
+    <input type="hidden" name="totalPrice" id="hiddenPrice">
+
+    <!-- Submit Button -->
+	<button type="submit" class="btn btn-primary bg">Get Invoice</button>
+	<div>
+		<h5 class="">you will get a call or message from our sales dapartment</h5>
+	</div>
+  </form>
+</div>
+@if (session('success'))
+  <div class="alert alert-success">
+    {{ session('success') }}
+  </div>
+@endif
+			
 </div>
 
 </div>
