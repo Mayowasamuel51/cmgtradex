@@ -156,37 +156,18 @@
                         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
                             <div class="single-product">
                                 <div class="product-img">
-                              
-
                                     <a href="{{ route('product-detail', $product->slug) }}">
-
                                         @if($product->photo)
-                                        @php
-                                        $photos = explode('|', $product->photo);
-                                        echo asset($photos[0]);
-                                       
-                                        @endphp
-                                              <img src="{{ asset($photos[0]) }}" class="img-fluid zoom shadow rounded"
+                                        <img src="{{  asset('storage/'.$product->photo[0]) }}" class="img-fluid zoom shadow rounded"
                                             style="max-width: 150px; height: auto; object-fit: cover; border: 3px solid #ddd; padding: 5px;"
                                             alt="Product Image">
                                         @else
                                         <img src="{{ asset('backend/img/thumbnail-default.jpg') }}" class="img-fluid shadow rounded product-image"
                                             alt="Default Image">
                                         @endif
-
-                                    
                                     </a>
-
-                                    <div class="button-head">
-                                        <div class="product-action">
-                                           
-                                       
-                                        </div>
-                                        <div class="product-action-2">
-                                          
-                                        </div>
-                                    </div>
                                 </div>
+
 
                                 <div class="product-content">
                                     <h3>
@@ -195,7 +176,7 @@
                                         </a>
                                     </h3>
                                     <div class="product-price">
-                                     
+
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +200,7 @@
                                             alt="Default Image">
                                         @endif
 
-                                    
+
                                     </a>
                                     <div class="button-head">
                                         <div class="product-action">
@@ -290,59 +271,7 @@
 
 <!-- Start Most Popular -->
 <div class="product-area most-popular section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Hot Items</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    @foreach($product_lists as $product)
-                    @if($product->condition=='hot')
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-img">
-                            <!-- <a href="{{route('product-detail',$product->slug)}}">
-                                    @php
-                                        $photo=explode(',',$product->photo);
-                                    // dd($photo);
-                                    @endphp
-                                    <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    {{-- <span class="out-of-stock">Hot</span> --}}
-                                </a> -->
-                            <div class="button-head">
-                                <div class="product-action">
-                                    <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                    <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                </div>
-                                <div class="product-action-2">
-                                    <a href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                            <div class="product-price">
-                                <span class="old">${{number_format($product->price,2)}}</span>
-                                @php
-                                $after_discount=($product->price-($product->price*$product->discount)/100)
-                                @endphp
-                                <span>${{number_format($after_discount,2)}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                    @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 <!-- End Most Popular Area -->
 
@@ -380,7 +309,7 @@
                                 <div class="col-lg-6 col-md-6 col-12 no-padding">
                                     <div class="content">
                                         <h4 class="title"><a href="#">{{$product->title}}</a></h4>
-                                        <p class="price with-discount">${{number_format($product->discount,2)}}</p>
+
                                     </div>
                                 </div>
                             </div>
