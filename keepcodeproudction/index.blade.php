@@ -166,24 +166,36 @@
                                         echo asset($photos[0]);
                                        
                                         @endphp
-                                              <img src="{{ asset($photos[0]) }}" class="img-fluid zoom shadow rounded"
-                                            style="max-width: 150px; height: auto; object-fit: cover; border: 3px solid #ddd; padding: 5px;"
-                                            alt="Product Image">
+                                    <img src="http://127.0.0.1:8000/uploads/images/cb003143b91708085c9ac478a403000e.jpg" alt="Test Image">
+
                                         @else
                                         <img src="{{ asset('backend/img/thumbnail-default.jpg') }}" class="img-fluid shadow rounded product-image"
                                             alt="Default Image">
                                         @endif
 
-                                    
+                                        @if($product->stock <= 0)
+                                            <span class="out-of-stock">Sale Out</span>
+                                            @elseif($product->condition == 'new')
+                                            <span class="new">New</span>
+                                            @elseif($product->condition == 'hot')
+                                            <span class="hot">Hot</span>
+                                            @else
+                                            <span class="price-dec">{{$product->discount}}% Off</span>
+                                            @endif
+
                                     </a>
 
                                     <div class="button-head">
                                         <div class="product-action">
-                                           
-                                       
+                                            <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#">
+                                                <i class="ti-eye"></i><span>Quick Shop</span>
+                                            </a>
+                                            <a title="Wishlist" href="{{ route('add-to-wishlist', $product->slug) }}">
+                                                <i class="ti-heart"></i><span>Add to Wishlist</span>
+                                            </a>
                                         </div>
                                         <div class="product-action-2">
-                                          
+                                            <a title="Add to cart" href="{{ route('add-to-cart', $product->slug) }}">Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +207,11 @@
                                         </a>
                                     </h3>
                                     <div class="product-price">
-                                     
+                                        @php
+                                        $after_discount = ($product->price - ($product->price * $product->discount) / 100);
+                                        @endphp
+                                        <span>${{ number_format($after_discount, 2) }}</span>
+                                        <del style="padding-left: 4%;">${{ number_format($product->price, 2) }}</del>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +226,7 @@
                                         @php
                                         $photos = explode('|', $product->photo);
                                         @endphp
-                                        <img src="{{  $photos[0] }}" class="img-fluid zoom shadow rounded"
+                                        <img src="{{ asset($photos[0]) }}" class="img-fluid zoom shadow rounded"
                                             style="max-width: 150px; height: auto; object-fit: cover; border: 3px solid #ddd; padding: 5px;"
                                             alt="Product Image">
                                         @else
@@ -219,26 +235,36 @@
                                             alt="Default Image">
                                         @endif
 
-                                    
+                                        @if($product->stock<=0)
+                                            <span class="out-of-stock">Sale out</span>
+                                            @elseif($product->condition=='new')
+                                            <span class="new">New</span
+                                                @elseif($product->condition=='hot')
+                                            <span class="hot">Hot</span>
+                                            @else
+                                            <span class="price-dec">{{$product->discount}}% Off</span>
+                                            @endif
+
+
                                     </a>
                                     <div class="button-head">
                                         <div class="product-action">
-                                            <!-- <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                            <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a> -->
+                                            <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                            <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                         </div>
                                         <div class="product-action-2">
-                                            <!-- <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a> -->
+                                            <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <!-- <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3> -->
+                                    <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
                                     <div class="product-price">
-                                        <!-- @php
+                                        @php
                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
                                         <span>${{number_format($after_discount,2)}}</span>
-                                        <del style="padding-left:4%;">${{number_format($product->price,2)}}</del> -->
+                                        <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +294,7 @@
             @foreach($featured as $data)
             <!-- Single Banner  -->
             <div class="col-lg-6 col-md-6 col-12">
-                <!-- <div class="single-banner">
+                <div class="single-banner">
                     @php
                     $photo=explode(',',$data->photo);
                     @endphp
@@ -278,7 +304,7 @@
                         <h3>{{$data->title}} <br>Up to<span> {{$data->discount}}%</span></h3>
                         <a href="{{route('product-detail',$data->slug)}}">Shop Now</a>
                     </div>
-                </div> -->
+                </div>
             </div>
             <!-- /End Single Banner  -->
             @endforeach
