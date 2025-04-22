@@ -199,6 +199,7 @@ Route::get('/cookingproduct', [FrontendController::class, 'cookingproduct']);
         Route::patch('user-post/comment/udpate/{id}', [HomeController::class, 'userCommentUpdate'])->name('user.post-comment.update');
 
         // Password Change
-      
 
+      
+        Route::get('change-password', [HomeController::class, 'changePassword'])->name('change.password.form');
     });
