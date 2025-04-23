@@ -59,8 +59,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<!-- Start Single Service -->
 					<div class="single-service">
-						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
+						
 						
 					</div>
 					<!-- End Single Service -->
@@ -68,7 +67,6 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<!-- Start Single Service -->
 					<div class="single-service">
-						<i class="ti-reload"></i>
 						
 					</div>
 					<!-- End Single Service -->
