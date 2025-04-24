@@ -20,6 +20,35 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function storeorder(Request $request)
+     {
+         // Validate the form data
+         $validated = $request->validate([
+             'name' => 'required|string|max:255',
+             'email' => 'required|email',
+             'companyAddress' => 'required|string|max:255',
+             'itemList' => 'required|string',
+              'phone' => 'required|numeric',
+         ]);
+ 
+         // Create a new order
+         Order::create([
+             'first_name' => $validated['name'],
+             'email' => $validated['email'],
+             'phone' => $validated['phone'],
+             'address1' => $validated['companyAddress'],
+             'address2' => $validated['itemList'], // descript
+         ]);
+ 
+         // Flash a success message
+         session()->flash('success', 'Order has been placed successfully! We\'ll get back to you shortly.');
+ 
+         // Redirect back with a success message
+         return redirect()->back();
+     }
+
+
     public function index()
     {
         $orders=Order::orderBy('id','DESC')->paginate(10);

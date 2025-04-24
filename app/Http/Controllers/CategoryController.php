@@ -43,11 +43,22 @@ class CategoryController extends Controller
         $this->validate($request,[
             'title'=>'string|required',
             'summary'=>'string|nullable',
-            'photo'=>'string|nullable',
+            'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate multiple images
             'status'=>'required|in:active,inactive',
             'is_parent'=>'sometimes|in:1',
             'parent_id'=>'nullable|exists:categories,id',
         ]);
+        
+          $imagePaths = []; // Store image paths
+
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $file) {
+                $image_name = md5(uniqid(rand(), true)) . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/images'), $image_name); // Save directly in public folder
+                $imagePaths[] = 'uploads/images/' . $image_name; // No need for 'storage/'
+            }
+        }
+
         $data= $request->all();
         $slug=Str::slug($request->title);
         $count=Category::where('slug',$slug)->count();
@@ -56,6 +67,9 @@ class CategoryController extends Controller
         }
         $data['slug']=$slug;
         $data['is_parent']=$request->input('is_parent',0);
+         // Convert array of image URLs to string (for database storage)
+        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
+
         // return $data;   
         $status=Category::create($data);
         if($status){

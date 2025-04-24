@@ -23,6 +23,20 @@ class FrontendController extends Controller
     public function index(Request $request){
         return redirect()->route($request->user()->role);
     }
+     
+    
+      public function  salesprouduct (){
+        return view('frontend.pages.extraproduct');
+    }
+     public function   cookingproduct (){
+        return view('frontend.pages.cookingproduct');
+    }
+
+ public function   cookinghome (){
+        return view('frontend.pages.product_detail_cooking');
+    }
+
+
 
     public function home(){
         $featured=Product::where('status','active')->where('is_featured',1)->orderBy('price','DESC')->limit(2)->get();
@@ -39,14 +53,6 @@ class FrontendController extends Controller
                 ->with('product_lists',$products)
                 ->with('category_lists',$category);
     }   
-
-    public function  salesprouduct (){
-        return view('frontend.pages.extraproduct');
-    }
-
-    public function   cookingproduct (){
-        return view('frontend.pages.cookingproduct');
-    }
 
     public function aboutUs(){
         return view('frontend.pages.about-us');
@@ -231,10 +237,11 @@ class FrontendController extends Controller
 
     }
     public function productCat(Request $request){
-        $products=Category::getProductByCat($request->slug);
-        // return $request->slug;
-        $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
-
+        $products=  Category::getProductByCat($request->slug);
+        
+        
+        $recent_products=Product::where('cat','energy')->get();
+        
         if(request()->is('e-shop.loc/product-grids')){
             return view('frontend.pages.product-grids')->with('products',$products->products)->with('recent_products',$recent_products);
         }

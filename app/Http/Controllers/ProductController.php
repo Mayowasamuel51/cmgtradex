@@ -114,7 +114,7 @@ class ProductController extends Controller
             'title' => 'required|string',
             'summary' => 'required|string',
             'description' => 'nullable|string',
-            'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate multiple images
+            'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048', // Validate multiple images
             'size' => 'nullable',
             'stock' => 'required|numeric',
             'cat_id' => 'required|exists:categories,id',
