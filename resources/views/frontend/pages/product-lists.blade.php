@@ -178,7 +178,7 @@
             <!-- End Single Product Section -->
         @endforeach
     @else
-        <h4 class="text-warning text-center my-5">There are no products.</h4>
+        <h1 class="text-warning text-center my-5">COMING SOON </h1>
     @endif
 </div>
 
