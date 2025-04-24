@@ -69,7 +69,6 @@ Route::get('product-detail/{slug}', [FrontendController::class, 'productDetail']
 
 Route::post('/submit-order', [OrderController::class, 'storeorder'])->name('submit-order');
 
-
 Route::post('/product/search', [FrontendController::class, 'productSearch'])->name('product.search');
 Route::get('/product-cat/{slug}', [FrontendController::class, 'productCat'])->name('product-cat');
 Route::get('/product-sub-cat/{slug}/{sub_slug}', [FrontendController::class, 'productSubCat'])->name('product-sub-cat');
