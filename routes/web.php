@@ -56,8 +56,8 @@ Route::post('password-reset/{token}', [FrontendController::class, 'showResetForm
 Route::get('login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
 Route::get('login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');
 
-Route::get('/', [FrontendController::class, 'home'])->name('home');
 
+Route::get('/', [FrontendController::class, 'home'])->name('home');
 // Frontend Routes
 Route::get('/salesprouduct', [FrontendController::class, 'salesprouduct']);
 Route::get('/cookingproduct', [FrontendController::class, 'cookingproduct']);
@@ -200,12 +200,12 @@ Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
     Route::patch('user-post/comment/udpate/{id}', [HomeController::class, 'userCommentUpdate'])->name('user.post-comment.update');
 
     // Password Change
-    Route::get('change-password', [HomeController::class, 'changePassword'])->name('change.password.form');
+    
+    // Password Change
+    Route::get('change-password', [HomeController::class, 'changePassword'])->name('user.change.password.form');
+    Route::post('change-password', [HomeController::class, 'changPasswordStore'])->name('change.password');
+   
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
