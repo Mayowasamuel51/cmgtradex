@@ -61,7 +61,9 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 // Frontend Routes
 Route::get('/salesprouduct', [FrontendController::class, 'salesprouduct']);
 Route::get('/cookingproduct', [FrontendController::class, 'cookingproduct']);
+
 Route::get('/home', [FrontendController::class, 'index']);
+
 Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact/message', [MessageController::class, 'store'])->name('contact.store');
@@ -174,6 +176,9 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     // Password Change
     Route::get('change-password', [AdminController::class, 'changePassword'])->name('changes.password.form');
     Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
+
+    Route::get('change-password', [AdminController::class, 'changePassword'])->name('change.password.form');
+    Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
 });
 
 
@@ -203,6 +208,7 @@ Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
     
     // Password Change
     Route::get('change-password', [HomeController::class, 'changePassword'])->name('user.change.password.form');
+    // Route::get('change-password', [HomeController::class, 'changePassword'])->name('admin.change.password.form');
     Route::post('change-password', [HomeController::class, 'changPasswordStore'])->name('change.password');
    
 });
