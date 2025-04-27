@@ -268,12 +268,12 @@
         </div>
 
         {{-- Building and Construction (No Products) --}}
-        <a href="{{ url('product-cat/building-construction') }}" class="list-group-item list-group-item-action">
+        <a href="" class="list-group-item list-group-item-action">
             Building and Construction
         </a>
 
         {{-- Auto Parts (No Products) --}}
-        <a href="{{ url('product-cat/auto-parts') }}" class="list-group-item list-group-item-action">
+        <a href="" class="list-group-item list-group-item-action">
             Auto Parts
         </a>
 
@@ -283,7 +283,7 @@
         </a>
         <div class="collapse {{ Request::is('product-cat/general') ? 'show' : '' }}" id="general">
             <div class="ms-4 mt-2">
-                <p>Kitchen Appliances</p>
+                <p class="">Kitchen Appliances</p>
                 <p>Bedroom</p>
                 <p>Living Room</p>
                 <p>Office</p>
@@ -292,7 +292,7 @@
         </div>
 
         {{-- Metals (No Products) --}}
-        <a href="{{ url('product-cat/metals') }}" class="list-group-item list-group-item-action">
+        <a href="" class="list-group-item list-group-item-action">
             Metals
         </a>
 
