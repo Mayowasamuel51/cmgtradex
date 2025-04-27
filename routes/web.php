@@ -50,14 +50,17 @@ Route::get('user/logout', [FrontendController::class, 'logout'])->name('user.log
 
 Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
 Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
+
 // Reset password
 Route::post('password-reset/{token}', [FrontendController::class, 'showResetForm'])->name('password.reset.custom');
+
 // Socialite
 Route::get('login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
 Route::get('login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');
 
 
 Route::get('/', [FrontendController::class, 'home'])->name('home');
+
 // Frontend Routes
 Route::get('/salesprouduct', [FrontendController::class, 'salesprouduct']);
 Route::get('/cookingproduct', [FrontendController::class, 'cookingproduct']);
