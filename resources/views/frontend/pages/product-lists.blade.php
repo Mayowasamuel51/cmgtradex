@@ -178,7 +178,7 @@
 						<!-- End Single Product Section -->
 						@endforeach
 						@else
-						<h1 class="text-warning text-center my-5">COMING SOON </h1>
+						<!-- <h1 class="text-warning text-center my-5">COMING SOON </h1> -->
 						@endif
 					</div>
 
