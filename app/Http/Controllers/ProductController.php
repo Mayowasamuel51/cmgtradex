@@ -164,7 +164,7 @@ class ProductController extends Controller
         // // $full_image_path = "http://localhost:8000/" . $imagePaths;
         // // $data['photo'] = implode('|',$imagePaths); // Storing images in 'photo' column
         // $data['photo'] = implode('|',$imagePaths);
-        $base_url = "http://localhost:8000/";
+        $base_url = "https://cmgtradecommodityx.com/";
         $full_image_paths = array_map(fn($path) => $base_url . $path, $imagePaths);
         $data['photo'] = implode('|', $full_image_paths);
         // Save product
