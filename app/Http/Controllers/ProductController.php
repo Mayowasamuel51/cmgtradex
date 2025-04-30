@@ -161,8 +161,12 @@ class ProductController extends Controller
         $data['size'] = $request->input('size') ? implode(',', $request->input('size')) : '';
 
         // Convert array of image URLs to string (for database storage)
-        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
-
+        // // $full_image_path = "http://localhost:8000/" . $imagePaths;
+        // // $data['photo'] = implode('|',$imagePaths); // Storing images in 'photo' column
+        // $data['photo'] = implode('|',$imagePaths);
+        $base_url = "http://localhost:8000/";
+        $full_image_paths = array_map(fn($path) => $base_url . $path, $imagePaths);
+        $data['photo'] = implode('|', $full_image_paths);
         // Save product
         $status = Product::create($data);
 

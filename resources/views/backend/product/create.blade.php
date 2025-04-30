@@ -5,7 +5,7 @@
 <div class="card">
     <h5 class="card-header">Add Product</h5>
     <div class="card-body">
-      <form method="post" action="{{route('product.store')}}">
+      <form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
@@ -116,12 +116,13 @@
         <div class="form-group">
           <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
           <div class="input-group">
-              <span class="input-group-btn">
+              <!-- <span class="input-group-btn">
                   <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                   <i class="fa fa-picture-o"></i> Choose
                   </a>
-              </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
+              </span> -->
+              <input required type="file" class="form-control" name="photo[]" placeholder="address" multiple>
+          
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
           @error('photo')
