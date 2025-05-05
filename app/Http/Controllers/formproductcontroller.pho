@@ -127,7 +127,15 @@ class ProductController extends Controller
             'discount' => 'nullable|numeric'
         ]);
 
-        
+        // $imagePaths = []; // Store image paths
+
+        // if ($request->hasFile('photo')) {
+        //     foreach ($request->file('photo') as $file) {
+        //         $image_name = md5(uniqid(rand(), true)) . '.' . $file->getClientOriginalExtension();
+        //         $path = $file->storeAs('public/uploads/images', $image_name); // Store in storage/app/public/uploads/images
+        //         $imagePaths[] = 'storage/uploads/images/' . $image_name;
+        //     }
+        // }
         $imagePaths = []; // Store image paths
 
         if ($request->hasFile('photo')) {
@@ -152,7 +160,10 @@ class ProductController extends Controller
         $data['is_featured'] = $request->input('is_featured', 0);
         $data['size'] = $request->input('size') ? implode(',', $request->input('size')) : '';
 
-    
+        // Convert array of image URLs to string (for database storage)
+        // // $full_image_path = "http://localhost:8000/" . $imagePaths;
+        // // $data['photo'] = implode('|',$imagePaths); // Storing images in 'photo' column
+        // $data['photo'] = implode('|',$imagePaths);
         $base_url = "https://cmgtradecommodityx.com/";
         $full_image_paths = array_map(fn($path) => $base_url . $path, $imagePaths);
         $data['photo'] = implode('|', $full_image_paths);
