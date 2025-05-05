@@ -133,8 +133,8 @@ class ProductController extends Controller
         if ($request->hasFile('photo')) {
             foreach ($request->file('photo') as $file) {
                 $image_name = md5(uniqid(rand(), true)) . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('upload/images'), $image_name); // Save directly in public folder
-                $imagePaths[] = 'upload/images/' . $image_name; // No need for 'storage/'
+                $file->move(public_path('mainuploads/images'), $image_name); // Save directly in public folder
+                $imagePaths[] = 'mainuploads/images/' . $image_name; // No need for 'storage/'
             }
         }
 
