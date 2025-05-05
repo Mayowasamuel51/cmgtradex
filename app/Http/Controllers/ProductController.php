@@ -138,7 +138,6 @@ class ProductController extends Controller
             }
         }
 
-
         // Prepare data for the product
         $data = $request->all();
         $slug = Str::slug($request->title);
@@ -153,9 +152,7 @@ class ProductController extends Controller
         $data['size'] = $request->input('size') ? implode(',', $request->input('size')) : '';
 
     
-        $base_url = "https://cmgtradecommodityx.com/";
-        $full_image_paths = array_map(fn($path) => $base_url . $path, $imagePaths);
-        $data['photo'] = implode('|', $full_image_paths);
+        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
         // Save product
         $status = Product::create($data);
 
