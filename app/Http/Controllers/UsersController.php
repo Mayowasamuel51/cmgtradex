@@ -46,8 +46,12 @@ class UsersController extends Controller
             'photo'=>'nullable|string',
         ]);
         // dd($request->all());
-        $data=$request->all();
-        $data['password']=Hash::make($request->password);
+        $data = $request->all();  
+        $data['password']=  Hash::make($request->password);  
+ 
+        // brcpty 
+        //  argon2 
+
         // dd($data);
         $status=User::create($data);
         // dd($status);
