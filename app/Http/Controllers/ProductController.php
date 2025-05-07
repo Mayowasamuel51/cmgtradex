@@ -127,6 +127,7 @@ class ProductController extends Controller
             'discount' => 'nullable|numeric'
         ]);
 
+        // this is the production side backend not this 
         
         $imagePaths = []; // Store image paths
 
