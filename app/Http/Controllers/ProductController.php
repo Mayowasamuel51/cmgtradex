@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -131,14 +131,13 @@ class ProductController extends Controller
         
         $imagePaths = []; // Store image paths
 
-        if ($request->hasFile('photo')) {
-            foreach ($request->file('photo') as $file) {
-                $image_name = md5(uniqid(rand(), true)) . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('mainuploads/images'), $image_name); // Save directly in public folder
-                $imagePaths[] = 'mainuploads/images/' . $image_name; // No need for 'storage/'
-            }
-        }
-
+      
+if ($request->hasFile('photo')) {
+    foreach ($request->file('photo') as $file) {
+        $path = $file->store('public/mainuploads/images'); // Save in storage/app/public/mainuploads/images
+        $imagePaths[] = Storage::url($path); // Converts to a web-accessible URL like /storage/mainuploads/images/xyz.jpg
+    }
+}
         // Prepare data for the product
         $data = $request->all();
         $slug = Str::slug($request->title);
@@ -153,7 +152,8 @@ class ProductController extends Controller
         $data['size'] = $request->input('size') ? implode(',', $request->input('size')) : '';
 
     
-        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
+       
+$data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
         // Save product
         $status = Product::create($data);
 
