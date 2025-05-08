@@ -142,9 +142,11 @@ class ProductController extends Controller
             $image_one_name = hexdec(uniqid()) . '.' . strtolower($image_one->getClientOriginalExtension());
             $image = $manager->read($image_one);
             // $image->resize(150, 150);
+            // $image->
             $final_image = 'uploads/images/'.$image_one_name;
             $image->save($final_image);
             $photoSave1 = $final_image;
+            $rro = 1;
         }
         // $staff->image = $photoSave1;
         // Prepare data for the product
