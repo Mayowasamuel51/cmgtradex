@@ -128,16 +128,16 @@ class ProductController extends Controller
         ]);
 
         // this is the production side backend not this 
-        
+
         $imagePaths = []; // Store image paths
 
-      
-if ($request->hasFile('photo')) {
-    foreach ($request->file('photo') as $file) {
-        $path = $file->store('public/mainuploads/images'); // Save in storage/app/public/mainuploads/images
-        $imagePaths[] = Storage::url($path); // Converts to a web-accessible URL like /storage/mainuploads/images/xyz.jpg
-    }
-}
+
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $file) {
+                $path = $file->store('public/mainuploads/images'); // Save in storage/app/public/mainuploads/images
+                $imagePaths[] = Storage::url($path); // Converts to a web-accessible URL like /storage/mainuploads/images/xyz.jpg
+            }
+        }
         // Prepare data for the product
         $data = $request->all();
         $slug = Str::slug($request->title);
@@ -151,9 +151,9 @@ if ($request->hasFile('photo')) {
         $data['is_featured'] = $request->input('is_featured', 0);
         $data['size'] = $request->input('size') ? implode(',', $request->input('size')) : '';
 
-    
-       
-$data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
+
+
+        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
         // Save product
         $status = Product::create($data);
 
