@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
@@ -129,15 +133,20 @@ class ProductController extends Controller
 
         // this is the production side backend not this 
 
-        $imagePaths = []; // Store image paths
+        
+        $image_one = $request->photo;
 
 
-        if ($request->hasFile('photo')) {
-            foreach ($request->file('photo') as $file) {
-                $path = $file->store('public/mainuploads/images'); // Save in storage/app/public/mainuploads/images
-                $imagePaths[] = Storage::url($path); // Converts to a web-accessible URL like /storage/mainuploads/images/xyz.jpg
-            }
+        if($image_one) {
+            $manager = new ImageManager(new Driver());
+            $image_one_name = hexdec(uniqid()) . '.' . strtolower($image_one->getClientOriginalExtension());
+            $image = $manager->read($image_one);
+            // $image->resize(150, 150);
+            $final_image = 'uploads/images/'.$image_one_name;
+            $image->save($final_image);
+            $photoSave1 = $final_image;
         }
+        // $staff->image = $photoSave1;
         // Prepare data for the product
         $data = $request->all();
         $slug = Str::slug($request->title);
@@ -153,7 +162,7 @@ class ProductController extends Controller
 
 
 
-        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
+        $data['photo'] = $photoSave1; // Storing images in 'photo' column
         // Save product
         $status = Product::create($data);
 

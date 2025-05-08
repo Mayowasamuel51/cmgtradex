@@ -121,7 +121,7 @@
                   <i class="fa fa-picture-o"></i> Choose
                   </a>
               </span> -->
-              <input required type="file" class="form-control" name="photo[]" placeholder="address" multiple>
+              <input required type="file" class="form-control" name="photo" placeholder="address" multiple>
           
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
