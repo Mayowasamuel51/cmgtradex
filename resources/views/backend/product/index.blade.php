@@ -85,8 +85,7 @@
                               $photo=explode(',',$product->photo);
                               // dd($photo);
                             @endphp
-                             <img 
-          src="{{ asset("https://cmgtradecommodityx.com/storage/mainuploads/images/CvWGuyOhFXcp9OpCMPONWdi1vOoXakdc2eKo7srH.png") }}" class="img-fluid zoom" style="max-width:80px" alt="Product Photo">
+                             <img src="{{ asset($photo[0]) }}" class="img-fluid zoom" style="max-width:80px" alt="Product Photo">
                             <!-- <img src="{{$photo[0]}}" class="img-fluid zoom" style="max-width:80px" alt="{{$product->photo}}"> -->
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
