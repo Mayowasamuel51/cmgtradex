@@ -49,14 +49,21 @@ class CategoryController extends Controller
             'parent_id'=>'nullable|exists:categories,id',
         ]);
         
-          $imagePaths = []; // Store image paths
+       
 
-        if ($request->hasFile('photo')) {
-            foreach ($request->file('photo') as $file) {
-                $image_name = md5(uniqid(rand(), true)) . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('uploads/images'), $image_name); // Save directly in public folder
-                $imagePaths[] = 'uploads/images/' . $image_name; // No need for 'storage/'
-            }
+        $image_one = $request->photo;
+
+
+        if($image_one) {
+            $manager = new ImageManager(new Driver());
+            $image_one_name = hexdec(uniqid()) . '.' . strtolower($image_one->getClientOriginalExtension());
+            $image = $manager->read($image_one);
+            // $image->resize(150, 150);
+            // $image->
+            $final_image = 'uploads/images/'.$image_one_name;
+            $image->save($final_image);
+            $photoSave1 = $final_image;
+            $rro = 1;
         }
 
         $data= $request->all();
@@ -68,7 +75,7 @@ class CategoryController extends Controller
         $data['slug']=$slug;
         $data['is_parent']=$request->input('is_parent',0);
          // Convert array of image URLs to string (for database storage)
-        $data['photo'] = implode('|', $imagePaths); // Storing images in 'photo' column
+        $data['photo'] = $photoSave1; ; // Storing images in 'photo' column
 
         // return $data;   
         $status=Category::create($data);

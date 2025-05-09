@@ -43,7 +43,7 @@
                     <td>{{date('d-m-Y', strtotime($order->created_at))}} </td>
                     <td>{{$order->address2}} </td>
                     <td>@foreach($shipping_charge as $data) $ {{number_format($data,2)}} @endforeach</td>
-                    <td>${{number_format($order->total_amount,2)}}</td>
+                    <td>{{number_format($order->total_amount,2)}}</td>
                     <!-- <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">{{$order->status}}</span>
