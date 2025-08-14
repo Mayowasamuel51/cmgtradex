@@ -64,7 +64,7 @@
             <div class="carousel-caption d-none d-md-block text-left">
                 <h1 class="wow fadeInDown" style="color: white;">{{$banner->title}}</h1>
                 <p>{!! html_entity_decode($banner->description) !!}</p>
-                <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
+                <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route(name: 'product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
             </div>
         </div>
         @endforeach
@@ -94,7 +94,7 @@
             @if($cat->is_parent==1)
             <!-- Single Banner  -->
             <div class="col-lg-4 col-md-6 col-12">
-             
+
             </div>
             @endif
             <!-- /End Single Banner  -->
@@ -139,6 +139,10 @@
                         </ul>
                         <!--/ End Tab Nav -->
                     </div>
+
+
+
+
                     <div class="tab-content isotope-grid" id="myTabContent">
                         <!-- Start Single Tab -->
                         @if($product_lists)
@@ -159,12 +163,12 @@
                                             alt="Default Image">
                                         @endif
 
-                                      
+
                                     </a>
 
                                     <div class="button-head">
-                                     
-                                       
+
+
                                     </div>
                                 </div>
 
@@ -175,13 +179,13 @@
                                         </a>
                                     </h3>
                                     <div class="product-price">
-                                     
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                      
+
                         @endforeach
 
                         <!--/ End Single Tab -->
@@ -190,6 +194,10 @@
                         <!--/ End Single Tab -->
 
                     </div>
+
+
+                    
+
                 </div>
             </div>
         </div>
@@ -233,11 +241,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                  
+
                 </div>
             </div>
         </div>
-       
+
     </div>
 </div>
 <!-- End Most Popular Area -->
@@ -270,7 +278,7 @@
                                         // dd($photo);
                                         @endphp
                                         <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12 no-padding">
@@ -449,7 +457,7 @@
                                 </div>
                             </div>
                             @endif
-                         
+
                             <div class="default-social">
                                 <!-- ShareThis BEGIN -->
                                 <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->

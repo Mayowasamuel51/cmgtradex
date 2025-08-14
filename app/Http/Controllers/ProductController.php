@@ -116,6 +116,7 @@ class ProductController extends Controller
         // Validate request
         $this->validate($request, [
             'title' => 'required|string',
+            'cat'=>'nullable|string',
             'summary' => 'required|string',
             'description' => 'nullable|string',
             'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048', // Validate multiple images

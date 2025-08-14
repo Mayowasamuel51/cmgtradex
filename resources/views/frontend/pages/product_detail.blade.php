@@ -118,9 +118,11 @@
 							<!--/ End Size -->
 							<!-- Product Buy -->
 							<div class="product-buy">
-
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam hic, dolorum saepe fugit itaque, nobis ex dolorem commodi illo quis accusamus? Fuga praesentium id quam nostrum ab obcaecati, repellendus consequatur!
 								<p class="cat">Category :<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
 								@if($product_detail->sub_cat_info)
+
+								<h1>Cat subs   {{ $product_detail->cat_info['cat']   }}</h1>
 								<p class="cat mt-1">Sub Category :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
 								@endif
 
@@ -154,93 +156,104 @@
 									</div>
 								</div>
 								<!--/ End Description Tab -->
+								<!-- TESTING NEW FORM  STARTING PHASE  -->
+
+						     <div class="tab-content isotope-grid" id="myTabContent">
+                        <!-- Start Single Tab -->
+                      
+
+                        <!--/ End Single Tab -->
+
+                    </div>
+
+								<!-- TESTING NEW FORM ENDING  -->
 
 								<!--  -->
 								<div class="container mt-5">
-									<!-- Place an Order Title -->
-									<h2 class="font-weight-bold mb-4 text-center">Place an Order</h2>
+								
+									<h2 class="font-weight-bold mb-4 text-center">ASK FOR QUOTE</h2>
 
 									<div class="container py-5">
-   
-	<div class="container py-5">
-  <h2 class="text-center mb-5 fw-bold">CMG CALCUlATOR</h2>
 
-  @php
-    $products = [
-      ['items' => [['name' => '25KG STORAGE SYSTEM', 'price' => 499000], ['name' => '35KG STORAGE SYSTEM', 'price' => 575000], ['name' => '50KG STORAGE SYSTEM', 'price' => 649000]]],
-      ['items' => [['name' => 'MGC MUMAG 2-Burner Table Top Gas Cooker (with Oven)', 'price' => 720000]]],
-      ['items' => [['name' => 'MGC MUMAG 4-Burner Table Top Gas Cooker', 'price' => 335000], ['name' => 'MGC MUMAG 3-Burner Table Top Gas Cooker', 'price' => 300000], ['name' => 'MGC MUMAG 2-Burner Table Top Gas Cooker', 'price' => 190000]]],
-      ['items' => [['name' => 'MGC MUMAG 5-Burner Table Top Gas Cooker', 'price' => 370000]]]
-    ];
-  @endphp
+										<div class="container py-5">
+							
 
-  <form id="orderForm" action="{{ route('submit-order') }}" method="POST" onsubmit="return prepareOrderData()">
-    @csrf
-    <div class="row justify-content-center g-4">
-      @foreach($products as $product)
-        <div class="col-md-4 col-sm-6 d-flex">
-          <div class="card shadow-sm w-100 h-100">
-            <div class="card-body text-center">
-              @foreach($product['items'] as $item)
-                <div class="mb-3">
-                  <h6 class="mb-1 fw-semibold">{{ $item['name'] }}</h6>
-                  <span class="badge bg-success">₦{{ number_format($item['price']) }}</span>
-                  <input type="number" class="form-control quantity mt-2"
-                        min="0"
-                        placeholder="Qty"
-                        data-price="{{ $item['price'] }}"
-                        data-name="{{ $item['name'] }}">
-                </div>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      @endforeach
-    </div>
+											@php
+											$products = [
+											['items' => [['name' => '25KG STORAGE SYSTEM', 'price' => 499000], ['name' => '35KG STORAGE SYSTEM', 'price' => 575000], ['name' => '50KG STORAGE SYSTEM', 'price' => 649000]]],
+											['items' => [['name' => 'MGC MUMAG 2-Burner Table Top Gas Cooker (with Oven)', 'price' => 720000]]],
+											['items' => [['name' => 'MGC MUMAG 4-Burner Table Top Gas Cooker', 'price' => 335000], ['name' => 'MGC MUMAG 3-Burner Table Top Gas Cooker', 'price' => 300000], ['name' => 'MGC MUMAG 2-Burner Table Top Gas Cooker', 'price' => 190000]]],
+											['items' => [['name' => 'MGC MUMAG 5-Burner Table Top Gas Cooker', 'price' => 370000]]]
+											];
+											@endphp
 
-    <div class="text-center mt-4">
-      <button type="button" class="btn btn-primary" onclick="generateInvoice()">Generate Invoice</button>
-    </div>
+											<form id="orderForm" action="{{ route('submit-order') }}" method="POST" onsubmit="return prepareOrderData()">
+												@csrf
+												<div class="row justify-content-center g-4">
+													@foreach($products as $product)
+													<div class="col-md-4 col-sm-6 d-flex">
+														<div class="card shadow-sm w-100 h-100">
+															<div class="card-body text-center">
+																@foreach($product['items'] as $item)
+																<div class="mb-3">
+																	<h6 class="mb-1 fw-semibold">{{ $item['name'] }}</h6>
+																	<span class="badge bg-success">₦{{ number_format($item['price']) }}</span>
+																	<input type="number" class="form-control quantity mt-2"
+																		min="0"
+																		placeholder="Qty"
+																		data-price="{{ $item['price'] }}"
+																		data-name="{{ $item['name'] }}">
+																</div>
+																@endforeach
+															</div>
+														</div>
+													</div>
+													@endforeach
+												</div>
 
-    <div class="mt-5" id="invoiceSection" style="display:none">
-      <h4 class="fw-bold">Invoice Summary</h4>
-      <ul class="list-group mb-3" id="invoiceList"></ul>
-      <h5>Total: <span id="invoiceTotal"></span></h5>
+												<div class="text-center mt-4">
+													<button type="button" class="btn btn-primary" onclick="generateInvoice()"> Oder QUOTE</button>
+												</div>
 
-      <!-- Hidden inputs to store generated values -->
-      <textarea name="itemList" id="hiddenItemList" class="form-control" hidden></textarea>
-      <input type="hidden" name="totalPrice" id="hiddenPrice">
+												<div class="mt-5" id="invoiceSection" style="display:none">
+													<h4 class="fw-bold">Invoice Summary</h4>
+													<ul class="list-group mb-3" id="invoiceList"></ul>
+													<h5>Total: <span id="invoiceTotal"></span></h5>
 
-      <!-- Customer Info -->
-      <div class="form-group mt-4">
-        <label>Name:</label>
-        <input type="text" name="name" class="form-control" required>
-      </div>
+													<!-- Hidden inputs to store generated values -->
+													<textarea name="itemList" id="hiddenItemList" class="form-control" hidden></textarea>
+													<input type="hidden" name="totalPrice" id="hiddenPrice">
 
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="email" name="email" class="form-control" required>
-      </div>
+													<!-- Customer Info -->
+													<div class="form-group mt-4">
+														<label>Name:</label>
+														<input type="text" name="name" class="form-control" required>
+													</div>
 
-      <div class="form-group">
-        <label>Phone:</label>
-        <input type="number" name="phone" class="form-control" required>
-      </div>
+													<div class="form-group">
+														<label>Email:</label>
+														<input type="email" name="email" class="form-control" required>
+													</div>
 
-      <div class="form-group">
-        <label>Company Address:</label>
-        <input type="text" name="companyAddress" class="form-control" required>
-      </div>
+													<div class="form-group">
+														<label>Phone:</label>
+														<input type="number" name="phone" class="form-control" required>
+													</div>
 
-      <div class="text-center mt-3">
-        <button type="submit" class="btn btn-success">Submit Order</button>
-      </div>
-    </div>
-  </form>
-</div>
+													<div class="form-group">
+														<label>Company Address:</label>
+														<input type="text" name="companyAddress" class="form-control" required>
+													</div>
 
-   
-</div>
+													<div class="text-center mt-3">
+														<button type="submit" class="btn btn-success">Submit Order</button>
+													</div>
+												</div>
+											</form>
+										</div>
+
+
+									</div>
 								</div>
 								@if (session('success'))
 								<div class="alert alert-success">
@@ -598,46 +611,46 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
 	function generateInvoice() {
-  const quantities = document.querySelectorAll('.quantity');
-  let total = 0;
-  let itemList = [];
-  let html = '';
+		const quantities = document.querySelectorAll('.quantity');
+		let total = 0;
+		let itemList = [];
+		let html = '';
 
-  quantities.forEach(input => {
-    const qty = parseInt(input.value);
-    const price = parseInt(input.dataset.price);
-    const name = input.dataset.name;
+		quantities.forEach(input => {
+			const qty = parseInt(input.value);
+			const price = parseInt(input.dataset.price);
+			const name = input.dataset.name;
 
-    if (qty > 0) {
-      const subtotal = qty * price;
-      total += subtotal;
-      html += `<li class="list-group-item">${qty} × ${name} = ₦${subtotal.toLocaleString()}</li>`;
-      itemList.push(`${qty} × ${name} = ₦${subtotal.toLocaleString()}`);
-    }
-  });
+			if (qty > 0) {
+				const subtotal = qty * price;
+				total += subtotal;
+				html += `<li class="list-group-item">${qty} × ${name} = ₦${subtotal.toLocaleString()}</li>`;
+				itemList.push(`${qty} × ${name} = ₦${subtotal.toLocaleString()}`);
+			}
+		});
 
-  if (itemList.length === 0) {
-    html = '<li class="list-group-item">No items selected.</li>';
-  }
+		if (itemList.length === 0) {
+			html = '<li class="list-group-item">No items selected.</li>';
+		}
 
-  document.getElementById('invoiceList').innerHTML = html;
-  document.getElementById('invoiceTotal').innerText = `₦${total.toLocaleString()}`;
-  document.getElementById('hiddenItemList').value = itemList.join('\n');
-  document.getElementById('hiddenPrice').value = total;
-  document.getElementById('invoiceSection').style.display = 'block';
-}
+		document.getElementById('invoiceList').innerHTML = html;
+		document.getElementById('invoiceTotal').innerText = `₦${total.toLocaleString()}`;
+		document.getElementById('hiddenItemList').value = itemList.join('\n');
+		document.getElementById('hiddenPrice').value = total;
+		document.getElementById('invoiceSection').style.display = 'block';
+	}
 
-function prepareOrderData() {
-  const hiddenList = document.getElementById('hiddenItemList').value;
-  const hiddenPrice = document.getElementById('hiddenPrice').value;
+	function prepareOrderData() {
+		const hiddenList = document.getElementById('hiddenItemList').value;
+		const hiddenPrice = document.getElementById('hiddenPrice').value;
 
-  if (!hiddenList || hiddenPrice == 0) {
-    alert('Please generate invoice before submitting!');
-    return false;
-  }
+		if (!hiddenList || hiddenPrice == 0) {
+			alert('Please generate invoice before submitting!');
+			return false;
+		}
 
-  return true;
-}
+		return true;
+	}
 </script>
 
 @endpush
